@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/Fuerza2"
-        android:layout_width="60dp"
+        android:layout_width="82dp"
         android:layout_height="22dp"
         android:text="Fuerza"
         app:layout_constraintBottom_toBottomOf="parent"
