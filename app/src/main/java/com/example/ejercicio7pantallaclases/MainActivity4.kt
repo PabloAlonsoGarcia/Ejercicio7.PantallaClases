@@ -15,14 +15,24 @@ class MainActivity4 : AppCompatActivity() {
         setContentView(binding.root)
 
         var aux=0
+        var tamMochila=intent.getIntExtra("mochila",0)
+
 
         binding.imageButton2.setOnClickListener(){
             aux=aleatorio()
         }
+        if(aux==0){
+            binding.Avanzar.isEnabled=false
+        }
         binding.Avanzar.setOnClickListener(){
             val intent = Intent(this, MainActivity5::class.java)
             intent.putExtra("numero",aux)
-            startActivity(intent)
+
+                if (aux == 1) {
+                    intent.putExtra("mochila", tamMochila)
+                }
+                startActivity(intent)
+
         }
 
 
@@ -37,16 +47,20 @@ class MainActivity4 : AppCompatActivity() {
         when(aux){
             1->{
                 binding.texto2.text="Has encontrado un objeto"
+                binding.Avanzar.isEnabled=true
 
             }
             2->{
                 binding.texto2.text="Has encontrado una ciudad"
+                binding.Avanzar.isEnabled=true
             }
             3->{
                 binding.texto2.text="Has encontrado un mercader"
+                binding.Avanzar.isEnabled=true
             }
             4->{
                 binding.texto2.text="Has encontrado un enemigo"
+                binding.Avanzar.isEnabled=true
             }
         }
         return aux

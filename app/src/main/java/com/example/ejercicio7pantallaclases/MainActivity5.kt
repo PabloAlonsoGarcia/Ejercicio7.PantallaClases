@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import com.example.ejercicio7pantallaclases.databinding.ActivityMain5Binding
 
 class MainActivity5 : AppCompatActivity() {
@@ -15,21 +16,38 @@ class MainActivity5 : AppCompatActivity() {
         setContentView(binding.root)
 
         val numero = intent.getIntExtra("numero",0)
+        binding.Aviso.isVisible=false
 
         when(numero){
             1->{
                 binding.imagenP.setImageResource(R.drawable.objeto)
+                var tamanoMochila=intent.getIntExtra("mochila",0)
+                var peso=5
+                var valor=10
+                var durabilidad=20
                 binding.boton1.text="Continuar"
                 binding.boton2.text="Recoger"
 
+                if(tamanoMochila<=0){
+                    binding.boton2.isEnabled=false
+                    binding.Aviso.isVisible=true
+                    binding.Aviso.text="No tienes espacio en la mochila"
+                }
                 binding.boton1.setOnClickListener(){
                     val intent = Intent(this, MainActivity4::class.java)
+
                     startActivity(intent)
                 }
                 binding.boton2.setOnClickListener(){
-                    val intent = Intent(this, MainActivity6::class.java)
+                    val intent = Intent(this, MainActivity4::class.java)
+                    tamanoMochila=tamanoMochila-peso
+                    intent.putExtra("mochila",tamanoMochila)
                     startActivity(intent)
                 }
+
+
+
+
             }
             2->{
                 binding.imagenP.setImageResource(R.drawable.ciudad)

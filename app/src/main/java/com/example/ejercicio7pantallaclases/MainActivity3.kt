@@ -19,7 +19,7 @@ class MainActivity3 : AppCompatActivity() {
 
         var fuerza=0
         var defensa=0
-        var mochila=100
+        var mochila=10
         var vida=200
         var monedero=0
 
@@ -82,6 +82,7 @@ class MainActivity3 : AppCompatActivity() {
         }
         binding.Aceptar.setOnClickListener(){
             val intent = Intent(this, MainActivity4::class.java)
+            intent.putExtra("mochila",mochila)
             startActivity(intent)
         }
         binding.Reiniciar.setOnClickListener(){
