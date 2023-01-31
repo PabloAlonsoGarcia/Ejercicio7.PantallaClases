@@ -1,6 +1,7 @@
 package com.example.ejercicio7pantallaclases
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejercicio7pantallaclases.databinding.ActivityMain4Binding
@@ -13,16 +14,22 @@ class MainActivity4 : AppCompatActivity() {
         binding=ActivityMain4Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var aux=0
 
         binding.imageButton2.setOnClickListener(){
-            aleatorio()
+            aux=aleatorio()
+        }
+        binding.Avanzar.setOnClickListener(){
+            val intent = Intent(this, MainActivity5::class.java)
+            intent.putExtra("numero",aux)
+            startActivity(intent)
         }
 
 
 
     }
     @SuppressLint("SetTextI18n")
-    fun aleatorio(){
+    fun aleatorio(): Int {
         var aux=0
 
         aux=(1..4).random()
@@ -42,6 +49,8 @@ class MainActivity4 : AppCompatActivity() {
                 binding.texto2.text="Has encontrado un enemigo"
             }
         }
+        return aux
+
     }
 
 }
