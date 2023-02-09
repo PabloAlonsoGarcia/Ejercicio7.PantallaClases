@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejercicio7pantallaclases.databinding.ActivityMain4Binding
+import com.google.gson.Gson
 
 class MainActivity4 : AppCompatActivity() {
     private lateinit var binding: ActivityMain4Binding
@@ -15,7 +16,14 @@ class MainActivity4 : AppCompatActivity() {
         setContentView(binding.root)
 
         var aux=0
-        var tamMochila=intent.getIntExtra("mochila",0)
+
+        val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
+        var gson = Gson()
+        var json = sharedPref.getString("Personaje", "")
+        var p1 = gson.fromJson(json, Personaje::class.java)
+
+
+        var tamMochila=p1.mochila
 
 
         binding.imageButton2.setOnClickListener(){

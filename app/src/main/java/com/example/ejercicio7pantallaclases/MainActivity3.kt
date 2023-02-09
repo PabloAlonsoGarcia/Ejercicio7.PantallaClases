@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.ejercicio7pantallaclases.databinding.ActivityMain3Binding
+import com.google.gson.Gson
 
 class MainActivity3 : AppCompatActivity() {
     private lateinit var binding: ActivityMain3Binding
@@ -17,6 +18,11 @@ class MainActivity3 : AppCompatActivity() {
         var clase=intent.getStringExtra("clase").toString()
         var raza=intent.getStringExtra("raza").toString()
 
+
+
+
+
+        var nombre=""
         var fuerza=0
         var defensa=0
         var mochila=10
@@ -30,7 +36,10 @@ class MainActivity3 : AppCompatActivity() {
         defensa=(1..5).random()
 
 
-        when(clase){
+        var p1 = Personaje(nombre,raza,clase,fuerza,defensa,mochila,vida,monedero)
+
+
+        when(p1.clase){
 
             "Arquero"->{
                 binding.imageView2.setImageResource(R.drawable.arquero)
@@ -47,7 +56,7 @@ class MainActivity3 : AppCompatActivity() {
 
         }
 
-        when(raza){
+        when(p1.raza){
 
                 "Humano"->{
                     binding.imageView3.setImageResource(R.drawable.humano)
@@ -65,11 +74,11 @@ class MainActivity3 : AppCompatActivity() {
         }
 
 
-        binding.Fuerza2.text="Fuerza: "+fuerza
-        binding.Defensa.text="Defensa:"+defensa
-        binding.TamanoMochila.text="Tamaño mochila"+mochila.toString()
-        binding.Vida.text="Vida: "+vida.toString()
-        binding.Monedero.text="Monedero: "+monedero.toString()
+        binding.Fuerza2.text="Fuerza: "+p1.fuerza
+        binding.Defensa.text="Defensa:"+p1.defensa
+        binding.TamanoMochila.text="Tamaño mochila"+p1.mochila.toString()
+        binding.Vida.text="Vida: "+p1.vida.toString()
+        binding.Monedero.text="Monedero: "+p1.monedero.toString()
 
 
 
@@ -82,7 +91,15 @@ class MainActivity3 : AppCompatActivity() {
         }
         binding.Aceptar.setOnClickListener(){
             val intent = Intent(this, MainActivity4::class.java)
-            intent.putExtra("mochila",mochila)
+            val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
+            val gson = Gson()
+            val editor = sharedPref.edit()
+
+            val jsonS = gson.toJson(p1)
+            editor.putString("Personaje", jsonS)
+            editor.apply()
+
+
             startActivity(intent)
         }
         binding.Reiniciar.setOnClickListener(){
