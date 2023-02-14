@@ -41,7 +41,6 @@
         android:id="@+id/Aviso"
         android:layout_width="263dp"
         android:layout_height="47dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,4 +90,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Comprar"
         app:layout_constraintTop_toBottomOf="@+id/boton2" />
+
+    <TextView
+        android:id="@+id/cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/Aviso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenP" />
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="56dp"
+        android:layout_height="47dp"
+        android:text="+"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/Aviso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cantidad"
+        app:layout_constraintTop_toBottomOf="@+id/imagenP" />
+
+    <Button
+        android:id="@+id/less"
+        android:layout_width="56dp"
+        android:layout_height="47dp"
+        android:text="-"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/Aviso"
+        app:layout_constraintEnd_toStartOf="@+id/cantidad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenP" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

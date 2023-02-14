@@ -83,20 +83,45 @@ class MainActivity5 : AppCompatActivity() {
                 binding.imagenP.setImageResource(R.drawable.mercader)
                 binding.boton1.text="Continuar"
                 binding.boton2.text="Comerciar"
+                var cantidad=0
 
                 binding.boton1.setOnClickListener(){
                     val intent = Intent(this, MainActivity4::class.java)
                     startActivity(intent)
                 }
                 binding.boton2.setOnClickListener(){
+                    binding.cantidad.text=cantidad.toString()
                     binding.Comprar.isVisible=true
                     binding.Vender.isVisible=true
                     binding.Continuar.isVisible=true
                     binding.boton1.isVisible=false
                     binding.boton2.isVisible=false
+                    binding.cantidad.isVisible=true
+                    binding.plus.isVisible=true
+                    binding.less.isVisible=true
+                    binding.Aviso.isVisible=true
                     binding.imagenP.setImageResource(R.drawable.objeto)
                     //val intent = Intent(this, MainActivity6::class.java)
                     //startActivity(intent)
+                    binding.plus.setOnClickListener(){
+                        cantidad++
+                        binding.cantidad.text=cantidad.toString()
+                    }
+                    binding.less.setOnClickListener(){
+                        if(cantidad>0){
+                            cantidad--
+                            binding.cantidad.text=cantidad.toString()
+                        }
+                    }
+                    binding.Comprar.setOnClickListener(){
+                        if(cantidad==0){
+                            binding.Aviso.text="Debes de comprar al menos un objeto para poder continuar"
+                        }else{
+                            binding.Aviso.text="Compra realizada"
+                        }
+                    }
+
+
 
                 }
 
