@@ -44,10 +44,10 @@
         android:layout_height="156dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.10"
         app:layout_constraintHorizontal_bias="0.30"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-        app:layout_constraintVertical_bias="0.099"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -63,8 +63,8 @@
         app:layout_constraintVertical_bias="0.10" />
 
     <TextView
-        android:id="@+id/Fuerza"
-        android:layout_width="60dp"
+        android:id="@+id/Fuerza2"
+        android:layout_width="82dp"
         android:layout_height="22dp"
         android:text="Fuerza"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Fuerza"
+        app:layout_constraintTop_toBottomOf="@+id/Fuerza2"
         app:layout_constraintVertical_bias="0.04" />
 
     <TextView
@@ -123,6 +123,17 @@
         app:layout_constraintVertical_bias="0.04" />
 
     <Button
+        android:id="@+id/Reiniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reiniciar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Atributos"
+        app:layout_constraintVertical_bias="0.559" />
+
+    <Button
         android:id="@+id/Aceptar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,21 +141,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Atributos"
-        app:layout_constraintVertical_bias="0.507" />
-
-    <Button
-        android:id="@+id/Reiniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="96dp"
-        android:text="Reiniciar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Aceptar" />
+        app:layout_constraintTop_toBottomOf="@+id/Reiniciar"
+        app:layout_constraintVertical_bias="0.161" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
