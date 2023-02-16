@@ -12,6 +12,7 @@ public class Personaje {
     private int monedero;
 
     public Personaje(String nombre, String raza, String clase, int fuerza, int defensa, int mochila, int vida, int monedero) {
+
         this.nombre = nombre;
         this.raza = raza;
         this.clase = clase;
@@ -21,6 +22,10 @@ public class Personaje {
         this.vida = vida;
         this.monedero = monedero;
     }
+
+    public Personaje() {
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -89,7 +94,7 @@ public class Personaje {
     @Override
     public String toString() {
         return "Personaje{" +
-                "nombre='" + nombre + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", raza='" + raza + '\'' +
                 ", clase='" + clase + '\'' +
                 ", fuerza=" + fuerza +

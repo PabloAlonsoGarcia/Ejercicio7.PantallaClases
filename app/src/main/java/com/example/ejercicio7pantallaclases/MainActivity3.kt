@@ -15,6 +15,10 @@ class MainActivity3 : AppCompatActivity() {
         binding=ActivityMain3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val db = DataBaseHelper(MainActivity@this)
+
+
+
         var clase=intent.getStringExtra("clase").toString()
         var raza=intent.getStringExtra("raza").toString()
 
@@ -38,6 +42,8 @@ class MainActivity3 : AppCompatActivity() {
 
 
         var p1 = Personaje(nombre,raza,clase,fuerza,defensa,mochila,vida,monedero)
+
+
 
         var o1= Objeto(1,125,R.drawable.objeto)
         var o2= Objeto(2,125,R.drawable.objeto2)
