@@ -22,10 +22,16 @@ class MainActivity5 : AppCompatActivity() {
         val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
         var gson = Gson()
 
+
         var json = sharedPref.getString("Personaje", "")
+        var jsonO = sharedPref.getString("Objetos", "")
+
 
         var p1 = gson.fromJson(json, Personaje::class.java)
+        var listaObjetos = gson.fromJson(jsonO, arrayListOf<Objeto>()::class.java)
 
+
+        var precioO =0
 
 
         when(numero){
@@ -35,7 +41,6 @@ class MainActivity5 : AppCompatActivity() {
                 var peso=5
                 var valor=10
                 var durabilidad=20
-                var al=0
                 binding.boton1.text="Continuar"
                 binding.boton2.text="Recoger"
 
@@ -53,7 +58,7 @@ class MainActivity5 : AppCompatActivity() {
                     val intent = Intent(this, MainActivity4::class.java)
                     tamanoMochila=tamanoMochila-peso
                     p1.mochila=tamanoMochila
-                    var editor = sharedPref.edit()
+                    val editor = sharedPref.edit()
                     json= gson.toJson(p1)
                     editor.putString("Personaje", json)
                     editor.apply()
@@ -69,11 +74,11 @@ class MainActivity5 : AppCompatActivity() {
                 binding.boton1.text="Continuar"
                 binding.boton2.text="Entrar"
 
-                binding.boton1.setOnClickListener(){
+                binding.boton1.setOnClickListener{
                     val intent = Intent(this, MainActivity4::class.java)
                     startActivity(intent)
                 }
-                binding.boton2.setOnClickListener(){
+                binding.boton2.setOnClickListener{
                     val intent = Intent(this, MainActivity6::class.java)
                     startActivity(intent)
                 }
@@ -85,11 +90,15 @@ class MainActivity5 : AppCompatActivity() {
                 binding.boton2.text="Comerciar"
                 var cantidad=0
 
-                binding.boton1.setOnClickListener(){
+
+
+                binding.boton1.setOnClickListener{
                     val intent = Intent(this, MainActivity4::class.java)
                     startActivity(intent)
                 }
-                binding.boton2.setOnClickListener(){
+                binding.boton2.setOnClickListener{
+                    var valAl=0
+
                     binding.cantidad.text=cantidad.toString()
                     binding.Comprar.isVisible=true
                     binding.Vender.isVisible=true
@@ -100,32 +109,75 @@ class MainActivity5 : AppCompatActivity() {
                     binding.plus.isVisible=true
                     binding.less.isVisible=true
                     binding.Aviso.isVisible=true
-                    binding.imagenP.setImageResource(R.drawable.objeto)
+                    binding.Coste.isVisible=true
+
+                    valAl=(1..3).random()
+
+                    when(valAl){
+                        1 -> binding.imagenP.setImageResource(R.drawable.objeto)
+                        2-> binding.imagenP.setImageResource(R.drawable.objeto2)
+                        3 -> binding.imagenP.setImageResource(R.drawable.objeto3)
+                    }
+
+
+
+                    /*for(i in listaObjetos){
+                        if(valAl== i.id){
+                            binding.imagenP.setImageResource(i.imagen)
+                        }
+                    }
+                    */
                     //val intent = Intent(this, MainActivity6::class.java)
                     //startActivity(intent)
-                    binding.plus.setOnClickListener(){
+                    binding.plus.setOnClickListener{
                         cantidad++
+                        precioO=precioO+5
                         binding.cantidad.text=cantidad.toString()
                     }
-                    binding.less.setOnClickListener(){
+                    binding.less.setOnClickListener{
                         if(cantidad>0){
                             cantidad--
+                            if(precioO>0)
+                                precioO=precioO-5
                             binding.cantidad.text=cantidad.toString()
                         }
                     }
-                    binding.Comprar.setOnClickListener(){
+                    binding.Comprar.setOnClickListener{
                         if(cantidad==0){
                             binding.Aviso.text="Debes de comprar al menos un objeto para poder continuar"
                         }else{
-                            binding.Aviso.text="Compra realizada"
+                            if(p1.monedero<precioO) {
+                                binding.Aviso.text = "No tienes suficiente dinero"
+                            }else{
+                                binding.Aviso.text="Compra realizada"
+                                p1.monedero=p1.monedero-precioO
+                            }
                         }
+                    }
+                    binding.Vender.setOnClickListener{
+
+
+                        binding.Aviso.text="Vendido"
+
+                        /*
+                        var contiene=false
+                        for(i in listaObjetos){
+                            if(i.id==valAl){
+                                binding.Aviso.text="Vendido"
+                                p1.monedero=p1.monedero+5
+                            }else{
+                                binding.Aviso.text="No tienes ese objeto"
+                            }
+                        }
+                        */
+
                     }
 
 
 
                 }
 
-                binding.Continuar.setOnClickListener(){
+                binding.Continuar.setOnClickListener{
                     val intent = Intent(this, MainActivity6::class.java)
                     startActivity(intent)
                 }
@@ -139,11 +191,11 @@ class MainActivity5 : AppCompatActivity() {
                 binding.boton1.text="Continuar"
                 binding.boton2.text="Pelear"
 
-                binding.boton1.setOnClickListener(){
+                binding.boton1.setOnClickListener{
                     val intent = Intent(this, MainActivity4::class.java)
                     startActivity(intent)
                 }
-                binding.boton2.setOnClickListener(){
+                binding.boton2.setOnClickListener{
                     val intent = Intent(this, MainActivity6::class.java)
                     startActivity(intent)
                 }
