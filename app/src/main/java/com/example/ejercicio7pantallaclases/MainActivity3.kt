@@ -15,6 +15,10 @@ class MainActivity3 : AppCompatActivity() {
         binding=ActivityMain3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val db = DataBaseHelper(MainActivity@this)
+
+
+
         var clase=intent.getStringExtra("clase").toString()
         var raza=intent.getStringExtra("raza").toString()
 
@@ -34,10 +38,19 @@ class MainActivity3 : AppCompatActivity() {
         fuerza=(10..15).random()
 
         defensa=(1..5).random()
+        monedero=20
 
 
         var p1 = Personaje(nombre,raza,clase,fuerza,defensa,mochila,vida,monedero)
 
+
+
+        var o1= Objeto(1,125,R.drawable.objeto)
+        var o2= Objeto(2,125,R.drawable.objeto2)
+        var o3= Objeto(3,125,R.drawable.objeto3)
+
+
+        var listaObjetos= arrayListOf<Objeto>(o1,o2,o3)
 
         when(p1.clase){
 
@@ -96,6 +109,8 @@ class MainActivity3 : AppCompatActivity() {
             val editor = sharedPref.edit()
 
             val jsonS = gson.toJson(p1)
+            val jsonO = gson.toJson(listaObjetos)
+            editor.putString("Objetos",jsonO)
             editor.putString("Personaje", jsonS)
             editor.apply()
 

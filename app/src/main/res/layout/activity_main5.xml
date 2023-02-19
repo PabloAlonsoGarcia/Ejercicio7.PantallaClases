@@ -124,4 +124,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagenP" />
 
+    <TextView
+        android:id="@+id/Coste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio: 5"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/Aviso"
+        app:layout_constraintEnd_toStartOf="@+id/plus"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toEndOf="@+id/less"
+        app:layout_constraintTop_toBottomOf="@+id/imagenP"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
