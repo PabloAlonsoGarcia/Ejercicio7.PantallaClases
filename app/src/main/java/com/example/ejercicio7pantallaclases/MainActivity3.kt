@@ -109,7 +109,7 @@ class MainActivity3 : AppCompatActivity() {
             }
         }
         binding.Aceptar.setOnClickListener(){
-            p1.nombre=binding.editTextTextPersonName2.toString()
+            p1.nombre=binding.editTextTextPersonName2.text.toString()
 
 
                 val intent = Intent(this, MainActivity4::class.java)
