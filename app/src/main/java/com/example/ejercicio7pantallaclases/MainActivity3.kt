@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.ejercicio7pantallaclases.databinding.ActivityMain3Binding
 import com.google.gson.Gson
 
@@ -15,7 +16,7 @@ class MainActivity3 : AppCompatActivity() {
         binding=ActivityMain3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val db = DataBaseHelper(MainActivity@this)
+        val db = DataBaseHelper(MainActivity3@this)
 
 
 
@@ -42,6 +43,11 @@ class MainActivity3 : AppCompatActivity() {
 
 
         var p1 = Personaje(nombre,raza,clase,fuerza,defensa,mochila,vida,monedero)
+
+
+        //crea un boolean
+
+
 
 
 
@@ -103,19 +109,28 @@ class MainActivity3 : AppCompatActivity() {
             }
         }
         binding.Aceptar.setOnClickListener(){
-            val intent = Intent(this, MainActivity4::class.java)
-            val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
-            val gson = Gson()
-            val editor = sharedPref.edit()
-
-            val jsonS = gson.toJson(p1)
-            val jsonO = gson.toJson(listaObjetos)
-            editor.putString("Objetos",jsonO)
-            editor.putString("Personaje", jsonS)
-            editor.apply()
+            p1.nombre=binding.editTextTextPersonName2.toString()
 
 
-            startActivity(intent)
+                val intent = Intent(this, MainActivity4::class.java)
+                val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
+                val gson = Gson()
+                val editor = sharedPref.edit()
+
+                val jsonS = gson.toJson(p1)
+                val jsonO = gson.toJson(listaObjetos)
+                editor.putString("Objetos", jsonO)
+                editor.putString("Personaje", jsonS)
+                editor.apply()
+
+                var succes: Boolean = db.addOne(p1);
+
+                Toast.makeText(MainActivity3@ this, "Success= " + succes, Toast.LENGTH_SHORT)
+                    .show();
+
+
+                startActivity(intent)
+
         }
         binding.Reiniciar.setOnClickListener(){
             val intent = Intent(this, MainActivity::class.java)
