@@ -2,10 +2,14 @@ package com.example.ejercicio7pantallaclases;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -60,4 +64,50 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    public List<String> getEveryone2(){
+        List<Personaje> returnList = new ArrayList<>();
+
+        //Obtener la informacion de los personajes de la base de datos
+
+        String queryString = "SELECT * FROM " + PERSONAJE;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString,null);
+
+        if(cursor.moveToFirst()){
+            do{
+                String nombrePj  = cursor.getString(0);
+                String razaPj = cursor.getString(1);
+                String clasePj = cursor.getString(2);
+                int ataquePj = cursor.getInt(3);
+                int defensaPj = cursor.getInt(4);
+                int vidaPj = cursor.getInt(5);
+
+
+                Personaje pJ = new Personaje(nombrePj,razaPj,clasePj,ataquePj,defensaPj,0,vidaPj,0);
+                returnList.add(pJ);
+
+
+
+            }while(cursor.moveToFirst());
+
+        }else{
+            //fallo. no añadir a la lista.
+        }
+
+        cursor.close();
+        db.close();
+
+        List<String> listaNombres = new ArrayList<>();
+
+        for (Personaje p1:returnList) {
+            listaNombres.add(p1.getNombre());
+        }
+
+
+
+        return listaNombres;
+    }
+
 }

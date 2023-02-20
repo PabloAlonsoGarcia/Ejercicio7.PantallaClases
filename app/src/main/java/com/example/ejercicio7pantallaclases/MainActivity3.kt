@@ -111,7 +111,7 @@ class MainActivity3 : AppCompatActivity() {
         binding.Aceptar.setOnClickListener(){
             p1.nombre=binding.editTextTextPersonName2.text.toString()
 
-                if(p1.nombre.isEmpty() || p1.nombre=="") {
+                if(p1.nombre.isEmpty() || p1.nombre==""|| p1.nombre.equals(" ")) {
                     Toast.makeText(MainActivity3@this,"Name error",Toast.LENGTH_SHORT).show()
 
                 }else{
