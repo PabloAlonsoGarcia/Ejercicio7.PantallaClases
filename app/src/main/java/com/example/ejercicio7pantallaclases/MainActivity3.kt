@@ -111,26 +111,29 @@ class MainActivity3 : AppCompatActivity() {
         binding.Aceptar.setOnClickListener(){
             p1.nombre=binding.editTextTextPersonName2.text.toString()
 
+                if(p1.nombre.isEmpty() || p1.nombre=="") {
+                    Toast.makeText(MainActivity3@this,"Name error",Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, MainActivity4::class.java)
-                val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
-                val gson = Gson()
-                val editor = sharedPref.edit()
+                }else{
+                    val intent = Intent(this, MainActivity4::class.java)
+                    val sharedPref = getSharedPreferences("Personaje", MODE_PRIVATE)
+                    val gson = Gson()
+                    val editor = sharedPref.edit()
 
-                val jsonS = gson.toJson(p1)
-                val jsonO = gson.toJson(listaObjetos)
-                editor.putString("Objetos", jsonO)
-                editor.putString("Personaje", jsonS)
-                editor.apply()
+                    val jsonS = gson.toJson(p1)
+                    val jsonO = gson.toJson(listaObjetos)
+                    editor.putString("Objetos", jsonO)
+                    editor.putString("Personaje", jsonS)
+                    editor.apply()
 
-                var succes: Boolean = db.addOne(p1);
+                    var succes: Boolean = db.addOne(p1);
 
-                Toast.makeText(MainActivity3@ this, "Success= " + succes, Toast.LENGTH_SHORT)
-                    .show();
+                    Toast.makeText(MainActivity3@ this, "Success= " + succes, Toast.LENGTH_SHORT)
+                        .show();
 
 
-                startActivity(intent)
-
+                    startActivity(intent)
+                }
         }
         binding.Reiniciar.setOnClickListener(){
             val intent = Intent(this, MainActivity::class.java)
