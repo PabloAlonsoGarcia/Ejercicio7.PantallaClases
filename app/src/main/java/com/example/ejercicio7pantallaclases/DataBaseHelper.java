@@ -25,7 +25,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTablePersonaje= "CREATE TABLE " + PERSONAJE + " (" + COLUMN_NOMBRE_PERSONAJE + " TEXT PRIMARY KEY, " + COLUMN_RAZA_PERSONAJE + " TEXT, " + COLUMN_CLASE_PERSONAJE + " TEXT," + COLUMN_FUERZA_PERSONAJE + " INTEGER," + COLUMN_DEFENSA_PERSONAJE + " INTEGER," + COLUMN_VIDA_PERSONAJE + " INTEGER)";
+        String createTablePersonaje=
+                "CREATE TABLE " + PERSONAJE + " (" + COLUMN_NOMBRE_PERSONAJE + " TEXT PRIMARY KEY, " + COLUMN_RAZA_PERSONAJE + " TEXT, " + COLUMN_CLASE_PERSONAJE + " TEXT," + COLUMN_FUERZA_PERSONAJE + " INTEGER," + COLUMN_DEFENSA_PERSONAJE + " INTEGER," + COLUMN_VIDA_PERSONAJE + " INTEGER)";
 
         sqLiteDatabase.execSQL(createTablePersonaje);
 
