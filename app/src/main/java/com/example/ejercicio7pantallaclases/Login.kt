@@ -24,11 +24,11 @@ class Login : AppCompatActivity() {
 
         val db = DataBaseHelper(Login@this)
 
-        //var listaPj=db.everyone2
-        //val spinnerPj = findViewById<Spinner>(R.id.spinnerPj)
-        //val adaptadorPJ = ArrayAdapter(this,android.R.layout.simple_spinner_item,listaPj)
-        //adaptadorPJ.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        //spinnerPj.adapter = adaptadorPJ
+        var listaPj=db.everyone2 as ArrayList<String>
+        val spinnerPj = findViewById<Spinner>(R.id.spinnerPj)
+        val adaptadorPJ = ArrayAdapter(this,android.R.layout.simple_spinner_item,listaPj)
+        adaptadorPJ.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerPj.adapter = adaptadorPJ
 
         binding.crearPJ.setOnClickListener{
             val intent = Intent(this, CrearCuenta::class.java)
@@ -38,6 +38,8 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+
 
 
 

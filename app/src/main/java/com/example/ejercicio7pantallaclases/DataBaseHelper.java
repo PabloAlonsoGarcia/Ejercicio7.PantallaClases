@@ -67,6 +67,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public List<String> getEveryone2(){
         List<Personaje> returnList = new ArrayList<>();
+        List<String> returnList2 = new ArrayList<>();
 
         //Obtener la informacion de los personajes de la base de datos
 
@@ -90,7 +91,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
 
-            }while(cursor.moveToFirst());
+            }while(cursor.moveToNext());
 
         }else{
             //fallo. no añadir a la lista.
@@ -99,15 +100,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
 
-        List<String> listaNombres = new ArrayList<>();
-
-        for (Personaje p1:returnList) {
-            listaNombres.add(p1.getNombre());
+        for (Personaje i:returnList) {
+            returnList2.add(i.getNombre());
         }
 
 
 
-        return listaNombres;
+
+
+        return returnList2;
     }
 
 }
