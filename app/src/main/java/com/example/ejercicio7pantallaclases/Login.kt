@@ -35,7 +35,7 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
         binding.Acceso.setOnClickListener(){
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, MainActivity4::class.java)
             startActivity(intent)
         }
 
