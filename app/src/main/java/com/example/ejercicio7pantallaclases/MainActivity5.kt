@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.ejercicio7pantallaclases.databinding.ActivityMain5Binding
 import com.google.gson.Gson
@@ -196,9 +197,73 @@ class MainActivity5 : AppCompatActivity() {
                     startActivity(intent)
                 }
                 binding.boton2.setOnClickListener{
-                    val intent = Intent(this, MainActivity6::class.java)
-                    startActivity(intent)
+                    var valAl=0
+                    var vidaJefe=100
+
+                    binding.Comprar.isVisible=true
+                    binding.Vender.isVisible=true
+                    binding.Continuar.isVisible=true
+                    binding.boton1.isVisible=false
+                    binding.boton2.isVisible=false
+
+
+                    binding.Continuar.text="Atacar"
+                    binding.Comprar.text="Curar"
+                    binding.Vender.text="Huir"
+
+
+                    binding.Continuar.setOnClickListener(){
+                        valAl = (1..6).random()
+                        if(valAl>=4){
+                            vidaJefe=vidaJefe-p1.fuerza
+                            Toast.makeText(this, "Has hecho "+p1.fuerza+" de daño", Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            Toast.makeText(this, "Has fallado", Toast.LENGTH_SHORT).show()
+                            p1.vida=p1.vida-10
+                        }
+                        if(vidaJefe<=0){
+                            binding.Aviso.text="Has ganado"
+                            binding.Continuar.isVisible=false
+                            binding.Comprar.isVisible=false
+                            binding.Vender.isVisible=false
+                            binding.Aviso.isVisible=true
+                            binding.Trato.isVisible=true
+                            binding.Trato.text="Continuar"
+                        }
+                        if(p1.vida<=0){
+                            binding.Aviso.text="Has perdido"
+                            binding.Continuar.isVisible=false
+                            binding.Comprar.isVisible=false
+                            binding.Vender.isVisible=false
+                            binding.Aviso.isVisible=true
+                            binding.Trato.isVisible=true
+                            binding.Trato.text="Continuar"
+                        }
+
+
+                    }
+                    binding.Comprar.setOnClickListener(){
+                        val vaAL2=0
+                        valAl = (1..6).random()
+                        if(valAl>=4){
+                            p1.vida=p1.vida+10
+                            Toast.makeText(this, "Has curado 10 de vida", Toast.LENGTH_SHORT).show()
+                        }
+
+                    binding.Vender.setOnClickListener(){
+                        val intent = Intent(this, MainActivity4::class.java)
+                        startActivity(intent)
+                    }
+                    binding.Trato.setOnClickListener(){
+                        val intent = Intent(this, MainActivity4::class.java)
+                        startActivity(intent)
+                    }
+
+
+
                 }
+
             }
         }
 

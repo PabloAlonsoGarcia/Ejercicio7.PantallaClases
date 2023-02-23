@@ -31,7 +31,7 @@ class Login : AppCompatActivity() {
         spinnerPj.adapter = adaptadorPJ
 
         binding.crearPJ.setOnClickListener{
-            val intent = Intent(this, CrearCuenta::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
         binding.Acceso.setOnClickListener(){
